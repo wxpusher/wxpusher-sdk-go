@@ -1,3 +1,3 @@
-module github.com/TMaize/wxpusher-client
+module github.com/wxpusher/wxpusher-sdk-go
 
 go 1.13

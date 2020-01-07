@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/TMaize/wxpusher-client/model"
+	"github.com/wxpusher/wxpusher-sdk-go/model"
 	"io/ioutil"
 	"net/http"
 	"strconv"

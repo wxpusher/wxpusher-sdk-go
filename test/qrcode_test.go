@@ -1,8 +1,8 @@
 package test
 
 import (
-	"github.com/TMaize/wxpusher-client"
-	"github.com/TMaize/wxpusher-client/model"
+	"github.com/wxpusher/wxpusher-sdk-go"
+	"github.com/wxpusher/wxpusher-sdk-go/model"
 	"testing"
 )
 

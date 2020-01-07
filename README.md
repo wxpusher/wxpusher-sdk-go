@@ -5,15 +5,15 @@
 ## 安装
 
 ```sh
-go get -u github.com/TMaize/wxpusher-client
+go get -u github.com/wxpusher/wxpusher-sdk-go
 ```
 
 引入
 
 ```go
 import (
-	"github.com/TMaize/wxpusher-client"
-	"github.com/TMaize/wxpusher-client/model"
+	"github.com/wxpusher/wxpusher-sdk-go"
+	"github.com/wxpusher/wxpusher-sdk-go/model"
 )
 ```
 
