@@ -8,6 +8,7 @@ import (
 type Message struct {
 	AppToken    string   `json:"appToken"`
 	Content     string   `json:"content"`
+	Summary     string   `json:"summary"`
 	ContentType int      `json:"contentType"`
 	TopicIds    []int    `json:"topicIds"`
 	UIds        []string `json:"uids"`
@@ -39,7 +40,10 @@ func (m *Message) SetContent(content string) *Message {
 	m.Content = content
 	return m
 }
-
+func (m *Message) SetSummary(summary string) *Message {
+	m.Summary = summary
+	return m
+}
 func (m *Message) SetUrl(url string) *Message {
 	m.Url = url
 	return m
