@@ -5,6 +5,7 @@ import (
 )
 
 // Message 消息
+//  ContentType： 1-文字 2-html
 type Message struct {
 	AppToken    string   `json:"appToken"`
 	Content     string   `json:"content"`
@@ -15,7 +16,7 @@ type Message struct {
 	Url         string   `json:"url"`
 }
 
-// SendMsgResult 发送消息结果
+// SendMsgResult 发送消息接口的响应结果
 type SendMsgResult struct {
 	Uid       string `json:"uid"`
 	TopicId   string `json:"topicId"`
@@ -24,6 +25,7 @@ type SendMsgResult struct {
 	Status    string `json:"status"`
 }
 
+// NewMessage 使用AppToken创建消息
 func NewMessage(appToken string) *Message {
 	return &Message{
 		AppToken:    appToken,
@@ -40,10 +42,12 @@ func (m *Message) SetContent(content string) *Message {
 	m.Content = content
 	return m
 }
+
 func (m *Message) SetSummary(summary string) *Message {
 	m.Summary = summary
 	return m
 }
+
 func (m *Message) SetUrl(url string) *Message {
 	m.Url = url
 	return m

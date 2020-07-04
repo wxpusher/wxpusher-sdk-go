@@ -11,11 +11,20 @@ import (
 	"strings"
 )
 
-const UrlBase = "http://wxpusher.zjiecode.com"
-const UrlSendMessage = UrlBase + "/api/send/message"
-const UrlMessageStatus = UrlBase + "/api/send/query/${messageId}"
-const UrlCreateQrcode = UrlBase + "/api/fun/create/qrcode"
-const UrlQueryWxUser = UrlBase + "/api/fun/wxuser"
+// URLBase 接口域名
+const URLBase = "http://wxpusher.zjiecode.com"
+
+// URLSendMessage 发送消息
+const URLSendMessage = URLBase + "/api/send/message"
+
+// URLMessageStatus 查询发送状态
+const URLMessageStatus = URLBase + "/api/send/query/${messageID}"
+
+// URLCreateQrcode 创建参数二维码
+const URLCreateQrcode = URLBase + "/api/fun/create/qrcode"
+
+// URLQueryWxUser 查询App的关注用户
+const URLQueryWxUser = URLBase + "/api/fun/wxuser"
 
 // SendMessage 发送消息
 func SendMessage(message *model.Message) ([]model.SendMsgResult, error) {
@@ -27,7 +36,7 @@ func SendMessage(message *model.Message) ([]model.SendMsgResult, error) {
 	}
 	// 参数转json
 	requestBody, _ := json.Marshal(message)
-	resp, err := http.Post(UrlSendMessage, "application/json", bytes.NewReader(requestBody))
+	resp, err := http.Post(URLSendMessage, "application/json", bytes.NewReader(requestBody))
 	if err != nil {
 		return msgResults, model.NewSDKError(err)
 	}
@@ -57,9 +66,9 @@ func SendMessage(message *model.Message) ([]model.SendMsgResult, error) {
 }
 
 // QueryMessageStatus 查询消息发送状态
-func QueryMessageStatus(messageId int) (model.Result, error) {
+func QueryMessageStatus(messageID int) (model.Result, error) {
 	var result model.Result
-	url := strings.ReplaceAll(UrlMessageStatus, "${messageId}", strconv.Itoa(messageId))
+	url := strings.ReplaceAll(URLMessageStatus, "${messageID}", strconv.Itoa(messageID))
 	resp, err := http.Get(url)
 	if err != nil {
 		return result, model.NewSDKError(err)
@@ -87,7 +96,7 @@ func CreateQrcode(qrcode *model.Qrcode) (model.CreateQrcodeResult, error) {
 		return qrResult, err
 	}
 	requestBody, _ := json.Marshal(qrcode)
-	resp, err := http.Post(UrlCreateQrcode, "application/json", bytes.NewReader(requestBody))
+	resp, err := http.Post(URLCreateQrcode, "application/json", bytes.NewReader(requestBody))
 	if err != nil {
 		return qrResult, model.NewSDKError(err)
 	}
@@ -119,7 +128,7 @@ func CreateQrcode(qrcode *model.Qrcode) (model.CreateQrcodeResult, error) {
 // QueryWxUser 查询App的关注用户
 func QueryWxUser(appToken string, page, pageSize int) (model.QueryWxUserResult, error) {
 	var queryResult model.QueryWxUserResult
-	req, _ := http.NewRequest("GET", UrlQueryWxUser, nil)
+	req, _ := http.NewRequest("GET", URLQueryWxUser, nil)
 	q := req.URL.Query()
 	q.Add("appToken", appToken)
 	q.Add("page", strconv.Itoa(page))

@@ -8,6 +8,10 @@
 go get -u github.com/wxpusher/wxpusher-sdk-go
 ```
 
+```sh
+go get github.com/wxpusher/wxpusher-sdk-go@v1.0.1
+```
+
 引入
 
 ```go
@@ -40,7 +44,7 @@ qrcodeResp, err := wxpusher.CreateQrcode(&qrcode)
 fmt.Println(qrcodeResp, err)
 ```
 
-## 查询App的关注用户
+## 查询 App 的关注用户
 
 ```go
 result, err := wxpusher.QueryWxUser(appToken, 1, 20)

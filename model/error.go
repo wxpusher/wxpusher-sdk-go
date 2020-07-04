@@ -2,6 +2,7 @@ package model
 
 import "fmt"
 
+// Error 错误实体
 type Error struct {
 	Code  int
 	Title string
@@ -12,7 +13,7 @@ func (err Error) Error() string {
 	return fmt.Sprintf("%d %s %s", err.Code, err.Title, err.Cause)
 }
 
-// NewError 创建新的异常
+// NewError 根据业务码创建错误实体
 func NewError(code int, err error) error {
 	var title string
 	switch code {
