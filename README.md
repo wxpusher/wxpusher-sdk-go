@@ -9,7 +9,7 @@ go get -u github.com/wxpusher/wxpusher-sdk-go
 ```
 
 ```sh
-go get github.com/wxpusher/wxpusher-sdk-go@v1.0.1
+go get github.com/wxpusher/wxpusher-sdk-go@v1.0.3
 ```
 
 引入

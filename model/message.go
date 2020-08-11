@@ -19,7 +19,7 @@ type Message struct {
 // SendMsgResult 发送消息接口的响应结果
 type SendMsgResult struct {
 	Uid       string `json:"uid"`
-	TopicId   string `json:"topicId"`
+	TopicId   int    `json:"topicId"`
 	MessageId int    `json:"messageId"`
 	Code      int    `json:"code"`
 	Status    string `json:"status"`
@@ -59,12 +59,14 @@ func (m *Message) AddUId(id string, more ...string) *Message {
 	return m
 }
 
+// AddTopicId 添加主题
 func (m *Message) AddTopicId(id int, more ...int) *Message {
 	m.TopicIds = append(m.TopicIds, id)
 	m.TopicIds = append(m.TopicIds, more...)
 	return m
 }
 
+// Check 本地校验消息的正确性
 func (m Message) Check() error {
 	if len(m.AppToken) == 0 {
 		return NewBusinessError(errors.New("appToken不能为空"))
@@ -78,8 +80,8 @@ func (m Message) Check() error {
 	if len(m.Content) == 0 {
 		return NewBusinessError(errors.New("content内容不能为空"))
 	}
-	if len(m.UIds) == 0 {
-		return NewBusinessError(errors.New("必须添加uid"))
+	if len(m.UIds)+len(m.TopicIds) == 0 {
+		return NewBusinessError(errors.New("未指定接收者，请设置UIds/TopicIds"))
 	}
 	return nil
 }

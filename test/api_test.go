@@ -17,6 +17,15 @@ func TestSendMessage(t *testing.T) {
 	t.Logf("%+v\n", result)
 }
 
+func TestSendTopic(t *testing.T) {
+	msg := model.NewMessage(os.Getenv("appToken")).SetContent("测试消息").SetSummary("这是摘要").AddTopicId(640)
+	result, err := wxpusher.SendMessage(msg)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("%+v\n", result)
+}
+
 func TestQueryMessageStatus(t *testing.T) {
 	messageID := 16727048
 	result, err := wxpusher.QueryMessageStatus(messageID)
